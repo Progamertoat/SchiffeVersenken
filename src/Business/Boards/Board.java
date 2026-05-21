@@ -8,4 +8,5 @@ public interface Board {
     ShipPart[][] getField();
     int getSize();
     boolean addShip(Ship ship, Vector2 position);
+    boolean tryToShootAt(Vector2 position);
 }

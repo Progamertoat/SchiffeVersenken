@@ -14,6 +14,25 @@ public abstract class AbstractShip implements Ship {
             parts[i] = new ShipPart(this, i);
         }
     }
+    @Override
+    public int getSize() {
+        return size;
+    }
+    @Override
+    public int getTotalShots() {
+        int count = 0;
+        for (ShipPart p : parts) {
+            if (p.isHit()) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    @Override
+    public Vector2 getDirection() {
+        return direction;
+    }
 
     @Override
     public ShipPart getShipPart(int index) {

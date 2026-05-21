@@ -64,7 +64,24 @@ abstract class AbstractBoard implements Board {
         }
         return true;
     }
-
+    @Override
+    public boolean tryToShootAt(Vector2 position) throws IndexOutOfBoundsException {
+        if (position.x() < 0 || position.x() >= getSize()) {
+            throw new ArrayIndexOutOfBoundsException();
+        }
+        if (position.y() < 0 || position.y() >= getSize()) {
+            throw new ArrayIndexOutOfBoundsException();
+        }
+        ShipPart shipPart = getShipPart(position);
+        if (shipPart == null) {
+            return false;
+        }
+        if (shipPart.isHit()) {
+            return false;
+        }
+        shipPart.hit();
+        return true;
+    }
     private static Vector2 getPositionOfShipPart(Ship ship, Vector2 position, int scale) {
         return Vector2.add(position, Vector2.scale(ship.getDirection(), scale));
     }
